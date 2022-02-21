@@ -18,6 +18,7 @@ Manage Internet, TV and Phone provider.
 ## Tools used
 
 Visual Studio
+SQL Server Management Studio
 
 ## How to use
 
