@@ -21,6 +21,6 @@ Visual Studio
 
 ## How to use
 
-1.Run ServiceProviderManagerDBCreate.sql
-2.Update Database path in App.config
-3.Run app
+1. Run ServiceProviderManagerDBCreate.sql
+2. Update Database path in App.config
+3. Run app
