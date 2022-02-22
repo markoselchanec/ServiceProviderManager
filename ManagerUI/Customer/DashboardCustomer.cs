@@ -38,9 +38,9 @@ namespace ManagerUI.Customer
                 customerAddressValueLabel.Text = customer.AddressName + " " + customer.AddressNumber;
                 customerEmailAddressValueLabel.Text = customer.EmailAddress;
                 customerPhoneNumberValueLabel.Text = customer.PhoneNumber;
-                customerRegistrationDateValueLabel.Text = customer.Registered.ToString();
+                customerRegistrationDateValueLabel.Text = customer.Registered.ToString("dd/MM/yyyy");
 
-                if (customer.ServicePackage.InternetService.Id == null)
+                if (customer.ServicePackage.InternetService.Id == null || customer.ServicePackage.InternetService == null)
                 {
                     internetNameValueLabel.Text = "X";
                     internetSpeedValueLabel.Text = "X";
@@ -53,11 +53,11 @@ namespace ManagerUI.Customer
                     internetNameValueLabel.Text = customer.ServicePackage.InternetService.Name;
                     internetSpeedValueLabel.Text = customer.ServicePackage.InternetService.Speed;
                     internetCostValueLabel.Text = customer.ServicePackage.InternetService.CostPerMonth.ToString();
-                    internetStartingDateValueLabel.Text = customer.ServicePackage.InternetServiceStartingDate.ToString();
-                    internetEndingDateValueLabel.Text = customer.ServicePackage.InternetServiceEndingDate.ToString();
+                    internetStartingDateValueLabel.Text = customer.ServicePackage.InternetServiceStartingDate.ToString("dd/MM/yyyy");
+                    internetEndingDateValueLabel.Text = customer.ServicePackage.InternetServiceEndingDate.ToString("dd/MM/yyyy");
                 }
 
-                if (customer.ServicePackage.TvService.Id == null)
+                if (customer.ServicePackage.TvService.Id == null || customer.ServicePackage.TvService == null)
                 {
                     tvNameValueLabel.Text = "X";
                     tvChannelNumberValueLabel.Text = "X";
@@ -70,12 +70,12 @@ namespace ManagerUI.Customer
                     tvNameValueLabel.Text = customer.ServicePackage.TvService.Name;
                     tvChannelNumberValueLabel.Text = customer.ServicePackage.TvService.ChannelCount.ToString();
                     tvCostValueLabel.Text = customer.ServicePackage.TvService.CostPerMonth.ToString();
-                    tvStartingDateValueLabel.Text = customer.ServicePackage.TvServiceStartingDate.ToString();
-                    tvEndingDateValueLabel.Text = customer.ServicePackage.TvServiceEndingDate.ToString();
+                    tvStartingDateValueLabel.Text = customer.ServicePackage.TvServiceStartingDate.ToString("dd/MM/yyyy");
+                    tvEndingDateValueLabel.Text = customer.ServicePackage.TvServiceEndingDate.ToString("dd/MM/yyyy");
 
                 }
 
-                if (customer.ServicePackage.PhoneService.Id == null)
+                if (customer.ServicePackage.PhoneService.Id == null || customer.ServicePackage.PhoneService == null)
                 {
                     phoneNameValueLabel.Text = "X";
                     phoneTalkingMinutesValueLabel.Text = "X";
@@ -90,8 +90,8 @@ namespace ManagerUI.Customer
                     phoneTalkingMinutesValueLabel.Text = customer.ServicePackage.PhoneService.TalkingMinutes.ToString();
                     phoneMessageAmountValueLabel.Text = customer.ServicePackage.PhoneService.MessageAmount.ToString();
                     phoneCostValueLabel.Text = customer.ServicePackage.PhoneService.CostPerMonth.ToString();
-                    phoneStartingDateValueLabel.Text = customer.ServicePackage.PhoneServiceStartingDate.ToString();
-                    phoneEndingDateValueLabel.Text = customer.ServicePackage.PhoneServiceEndingDate.ToString();
+                    phoneStartingDateValueLabel.Text = customer.ServicePackage.PhoneServiceStartingDate.ToString("dd/MM/yyyy");
+                    phoneEndingDateValueLabel.Text = customer.ServicePackage.PhoneServiceEndingDate.ToString("dd/MM/yyyy");
                 }
             }
             

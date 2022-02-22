@@ -376,14 +376,14 @@ END
 GO
 
 CREATE PROCEDURE [dbo].[spCustomer_Update]
+@CustomerId int,
 @FirstName nvarchar(100),
 @LastName nvarchar (100),
 @AddressName nvarchar(200),
 @AddressNumber int,
 @PhoneNumber varchar (20),
 @EmailAddress nvarchar (100),
-@ServicePackageId int,
-@Registered datetime
+@ServicePackageId int
 
 AS
 BEGIN
@@ -396,9 +396,8 @@ BEGIN
 		AddressNumber = @AddressNumber,
 		PhoneNumber = @PhoneNumber,
 		EmailAddress = @EmailAddress,
-		ServicePackageId = @ServicePackageId,
-		Registered = @Registered
-
+		ServicePackageId = @ServicePackageId
+	WHERE Customer.id = @CustomerId
 END
 GO
 

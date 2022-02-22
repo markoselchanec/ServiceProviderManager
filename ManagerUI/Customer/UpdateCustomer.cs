@@ -1,4 +1,5 @@
-﻿using ServiceManagerLibrary;
+﻿using ManagerUI.Customer;
+using ServiceManagerLibrary;
 using ServiceManagerLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -65,10 +66,6 @@ namespace ManagerUI
             if (Customer.ServicePackage.InternetServiceDurationMonths == 0) updateSelectedInternetType.Text = "";
             if (Customer.ServicePackage.TvServiceDurationMonths == 0) updateSelectedTvType.Text = "";
             if (Customer.ServicePackage.PhoneServiceDurationMonths == 0) updateSelectedPhoneType.Text = "";
-        }
-        private int calculateMonths(DateTime date2, DateTime date1)
-        {
-            return ((date1.Year - date2.Year) * 12) + date1.Month - date2.Month;
         }
 
         private void updaterAddInternetServiceButton_Click(object sender, EventArgs e)
@@ -207,6 +204,7 @@ namespace ManagerUI
 
 
                 CustomerModel customerModel = new();
+                customerModel.Id = Customer.Id;
                 customerModel.ServicePackage = Customer.ServicePackage;
                 customerModel.FirstName = updateFirstNameBox.Text;
                 customerModel.LastName = updateLastNameBox.Text;
@@ -214,12 +212,14 @@ namespace ManagerUI
                 customerModel.AddressNumber = int.Parse(updateAddressNumberBox.Text);
                 customerModel.EmailAddress = updateEmailAddressBox.Text;
                 customerModel.PhoneNumber = updatePhoneNumberBox.Text;
-                customerModel.Registered = DateTime.Now;
+
 
                 GlobalConfig.Connection.UpdateCustomer(customerModel);
 
 
                 MessageBox.Show("Customer Updated.");
+                DashboardCustomer dc = new(GlobalConfig.Connection.GetCustomer_ByAddressNameAndNumber(customerModel.AddressName,customerModel.AddressNumber));
+                dc.Show();
                 this.Close();
 
                 updateFirstNameBox.Text = "";

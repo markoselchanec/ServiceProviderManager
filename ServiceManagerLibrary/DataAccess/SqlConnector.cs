@@ -59,7 +59,7 @@ namespace ServiceManagerLibrary.DataAccess
             /// System.Data.SqlClient NUGET package.
             using (SqlConnection connection = new(GlobalConfig.CnnString(db)))
             {
-
+                //@CustomerId int,
                 //@FirstName nvarchar(100),
                 //@LastName nvarchar(100),
                 //@AddressName nvarchar(200),
@@ -69,6 +69,7 @@ namespace ServiceManagerLibrary.DataAccess
                 //@ServicePackageId int,
                 //@Registered datetime,
                 DynamicParameters p = new DynamicParameters();
+                p.Add("@CustomerId", model.Id);
                 p.Add("@FirstName", model.FirstName);
                 p.Add("@LastName", model.LastName);
                 p.Add("@AddressName", model.AddressName);
@@ -76,7 +77,6 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@PhoneNumber", model.PhoneNumber);
                 p.Add("@EmailAddress", model.EmailAddress);
                 p.Add("@ServicePackageId", model.ServicePackage.Id);
-                p.Add("@Registered", model.Registered);
                 //Extracts id from DB.
                 //p.Add(
                 //    "@id",

@@ -38,6 +38,7 @@
             this.deleteInternetServiceButton = new System.Windows.Forms.Button();
             this.deleteTvServiceButton = new System.Windows.Forms.Button();
             this.deletePhoneServiceButton = new System.Windows.Forms.Button();
+            this.allCustomers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -139,12 +140,24 @@
             this.deletePhoneServiceButton.UseVisualStyleBackColor = true;
             this.deletePhoneServiceButton.Click += new System.EventHandler(this.deletePhoneServiceButton_Click);
             // 
+            // allCustomers
+            // 
+            this.allCustomers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
+            this.allCustomers.Location = new System.Drawing.Point(39, 269);
+            this.allCustomers.Name = "allCustomers";
+            this.allCustomers.Size = new System.Drawing.Size(227, 65);
+            this.allCustomers.TabIndex = 9;
+            this.allCustomers.Text = "All customers";
+            this.allCustomers.UseVisualStyleBackColor = true;
+            this.allCustomers.Click += new System.EventHandler(this.allCustomers_Click);
+            // 
             // ManagerLanding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(907, 404);
+            this.Controls.Add(this.allCustomers);
             this.Controls.Add(this.deletePhoneServiceButton);
             this.Controls.Add(this.deleteTvServiceButton);
             this.Controls.Add(this.deleteInternetServiceButton);
@@ -176,5 +189,6 @@
         private Button deleteInternetServiceButton;
         private Button deleteTvServiceButton;
         private Button deletePhoneServiceButton;
+        private Button allCustomers;
     }
 }

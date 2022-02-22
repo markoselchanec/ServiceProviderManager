@@ -1,3 +1,4 @@
+using ManagerUI.Customer;
 using ManagerUI.Services.Delete;
 
 namespace ManagerUI
@@ -55,6 +56,12 @@ namespace ManagerUI
         {
             DeletePhoneService deletePhoneService = new();
             deletePhoneService.Show();
+        }
+
+        private void allCustomers_Click(object sender, EventArgs e)
+        {
+            AllCustomers allCustomers = new();
+            allCustomers.Show();
         }
     }
 }
