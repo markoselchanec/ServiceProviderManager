@@ -186,22 +186,17 @@ namespace ManagerUI
                 if (selectedServicePackage.InternetService != null)
                 {
                     selectedServicePackage.InternetServiceStartingDate = DateTime.Now;
-                    if(selectedServicePackage.InternetServiceDurationMonths != null) selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths((int)selectedServicePackage.InternetServiceDurationMonths);
-                    if(selectedServicePackage.InternetServiceDurationMonths == null) selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths(0);
+                    selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths((int)selectedServicePackage.InternetServiceDurationMonths);
                 }
                 if (selectedServicePackage.TvService != null)
                 {
                     selectedServicePackage.TvServiceStartingDate = DateTime.Now;
-                    if (selectedServicePackage.TvServiceDurationMonths != null) selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths((int)selectedServicePackage.TvServiceDurationMonths);
-                    if (selectedServicePackage.TvServiceDurationMonths == null) selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths(0);
-
+                    selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths((int)selectedServicePackage.TvServiceDurationMonths);
                 }
                 if (selectedServicePackage.PhoneService != null)
                 {
                     selectedServicePackage.PhoneServiceStartingDate = DateTime.Now;
-                    if (selectedServicePackage.PhoneServiceDurationMonths != null) selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths((int)selectedServicePackage.PhoneServiceDurationMonths);
-                    if (selectedServicePackage.PhoneServiceDurationMonths == null) selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths(0);
-
+                    selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths((int)selectedServicePackage.PhoneServiceDurationMonths);
                 }
 
                 bool validateAddress = false;

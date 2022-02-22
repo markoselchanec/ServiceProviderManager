@@ -10,10 +10,11 @@ namespace ManagerUI
         [STAThread]
         static void Main()
         {
-            //TODO - SEARCH ALL CUSTOMERS
+            //TODO - SEARCH ALL CUSTOMERS.
 
-            //TODO - Format dates in dashboard
+            //TODO - Format dates in dashboard.
             //TODO - When closing update customer reload dashboard instead of closing it.
+            //TODO - Clean up code - add comments where missing.
             
 
             // To customize application configuration such as set high DPI settings or default font,
