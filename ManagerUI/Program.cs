@@ -10,12 +10,7 @@ namespace ManagerUI
         [STAThread]
         static void Main()
         {
-            
-            //TODO - SEARCH ALL CUSTOMERS.
-
-            //TODO - Clean up code - add comments where missing.
-
-
+           
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();

@@ -77,16 +77,9 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@PhoneNumber", model.PhoneNumber);
                 p.Add("@EmailAddress", model.EmailAddress);
                 p.Add("@ServicePackageId", model.ServicePackage.Id);
-                //Extracts id from DB.
-                //p.Add(
-                //    "@id",
-                //    0,
-                //    dbType: DbType.Int32,
-                //    direction: ParameterDirection.Output);
-                //Executes the stored procedure.
+
                 connection.Execute("spCustomer_Update", p, commandType: CommandType.StoredProcedure);
-                //executes get generic method and finds id that we get back through the stored procedure.
-                //model.Id = p.Get<int>("@id");
+
             }
         }
         /// <summary>

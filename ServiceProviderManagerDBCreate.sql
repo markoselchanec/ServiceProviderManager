@@ -418,6 +418,11 @@ VALUES('Max50', 5000,500, 500);
 INSERT INTO dbo.PhoneService(Name,TalkingMinutes,MessageAmount,CostPerMonth)
 VALUES('Super 60', 6000,600, 600);
 
+INSERT [dbo].[ServicePackage] ([InternetServiceId], [InternetServiceDurationMonths], [InternetServiceStartingDate], [InternetServiceEndingDate], [TvServiceId], [TvServiceDurationMonths], [TvServiceStartingDate], [TvServiceEndingDate], [PhoneServiceId], [PhoneServiceDurationMonths], [PhoneServiceStartingDate], [PhoneServiceEndingDate]) VALUES (2, 12, CAST(N'2022-02-22T12:12:19.970' AS DateTime), CAST(N'2023-02-22T12:12:19.970' AS DateTime), 1, 12, CAST(N'2022-02-22T12:12:19.970' AS DateTime), CAST(N'2023-02-22T12:12:19.970' AS DateTime), NULL, NULL, NULL, NULL)
+INSERT [dbo].[ServicePackage] ([InternetServiceId], [InternetServiceDurationMonths], [InternetServiceStartingDate], [InternetServiceEndingDate], [TvServiceId], [TvServiceDurationMonths], [TvServiceStartingDate], [TvServiceEndingDate], [PhoneServiceId], [PhoneServiceDurationMonths], [PhoneServiceStartingDate], [PhoneServiceEndingDate]) VALUES (1, 5, CAST(N'2022-02-22T12:13:16.267' AS DateTime), CAST(N'2022-07-22T12:13:16.267' AS DateTime), 1, 7, CAST(N'2022-02-22T12:13:16.267' AS DateTime), CAST(N'2022-09-22T12:13:16.267' AS DateTime), 1, 4, CAST(N'2022-02-22T12:13:16.267' AS DateTime), CAST(N'2022-06-22T12:13:16.267' AS DateTime))
+
+INSERT [dbo].[Customer] ([FirstName], [LastName], [AddressName], [AddressNumber], [PhoneNumber], [EmailAddress], [ServicePackageId], [Registered]) VALUES (N'Marko', N'Selchanec', N'Partizanski odredi', 39, N'077679867', N'marko.selchanec@outlook.com', 1, CAST(N'2022-02-22T12:12:19.993' AS DateTime))
+INSERT [dbo].[Customer] ([FirstName], [LastName], [AddressName], [AddressNumber], [PhoneNumber], [EmailAddress], [ServicePackageId], [Registered]) VALUES (N'Darko', N'Petroski', N'Nikola Kljusev', 11, N'077145567', N'dare.petre@gmail.com', 2, CAST(N'2022-02-22T12:13:16.270' AS DateTime))
 
 
 
