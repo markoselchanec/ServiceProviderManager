@@ -31,7 +31,7 @@ namespace ServiceManagerLibrary.Models
         /// <summary>
         /// The unique identifier for the internet service.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
         /// <summary>
         /// The name of the internet service.
         /// </summary>
@@ -44,18 +44,6 @@ namespace ServiceManagerLibrary.Models
         /// Cost per month of the internet service.
         /// </summary>
         public decimal CostPerMonth { get; set; }
-        /// <summary>
-        /// How many months the internet service lasts.
-        /// </summary>
-        public int DurationMonths { get; set; }
 
-        public string NameAndDuration
-        {
-            get
-            {
-                if(DurationMonths != 0) return $"{Name} : {DurationMonths} Months";
-                return "";
-            }
-        }
     }
 }

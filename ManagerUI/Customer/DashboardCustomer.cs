@@ -40,7 +40,7 @@ namespace ManagerUI.Customer
                 customerPhoneNumberValueLabel.Text = customer.PhoneNumber;
                 customerRegistrationDateValueLabel.Text = customer.Registered.ToString();
 
-                if (customer.ServicePackage.InternetService.Id == 0)
+                if (customer.ServicePackage.InternetService.Id == null)
                 {
                     internetNameValueLabel.Text = "X";
                     internetSpeedValueLabel.Text = "X";
@@ -57,7 +57,7 @@ namespace ManagerUI.Customer
                     internetEndingDateValueLabel.Text = customer.ServicePackage.InternetServiceEndingDate.ToString();
                 }
 
-                if (customer.ServicePackage.TvService.Id == 0)
+                if (customer.ServicePackage.TvService.Id == null)
                 {
                     tvNameValueLabel.Text = "X";
                     tvChannelNumberValueLabel.Text = "X";
@@ -75,7 +75,7 @@ namespace ManagerUI.Customer
 
                 }
 
-                if (customer.ServicePackage.PhoneService.Id == 0)
+                if (customer.ServicePackage.PhoneService.Id == null)
                 {
                     phoneNameValueLabel.Text = "X";
                     phoneTalkingMinutesValueLabel.Text = "X";
@@ -111,7 +111,6 @@ namespace ManagerUI.Customer
             MessageBox.Show("Customer removed.");
             this.Close();
         }
-        public event Action ReloadForm1;
 
     }
 }

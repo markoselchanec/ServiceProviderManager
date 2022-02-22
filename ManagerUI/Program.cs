@@ -12,7 +12,6 @@ namespace ManagerUI
         {
             //TODO - SEARCH ALL CUSTOMERS
 
-            //TODO - IF REMOVING A SERVICE ON UPDATE CUSTOMER - 
             //TODO - Format dates in dashboard
             //TODO - When closing update customer reload dashboard instead of closing it.
             

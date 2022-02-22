@@ -48,9 +48,9 @@ namespace ManagerUI
             tvTypeDropdown.DisplayMember = "Name";
             tvMonthsBox.Text = "";
 
-            if(selectedServicePackage.InternetService != null) selectedInternetType.Text = selectedServicePackage.InternetService.NameAndDuration;
-            if(selectedServicePackage.TvService != null) selectedTvType.Text = selectedServicePackage.TvService.NameAndDuration;
-            if(selectedServicePackage.PhoneService != null) selectedPhoneType.Text = selectedServicePackage.PhoneService.NameAndDuration;
+            if (selectedServicePackage.InternetService != null) selectedInternetType.Text = $"{selectedServicePackage.InternetService.Name} : {selectedServicePackage.InternetServiceDurationMonths}";
+            if (selectedServicePackage.TvService != null) selectedTvType.Text = $"{selectedServicePackage.TvService.Name} : {selectedServicePackage.TvServiceDurationMonths}";
+            if (selectedServicePackage.PhoneService != null) selectedPhoneType.Text = $"{selectedServicePackage.PhoneService.Name} : {selectedServicePackage.PhoneServiceDurationMonths}";
         }
 
         private void addInternetServiceButton_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace ManagerUI
 
             if(ValidateMonths(internetMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(internetMonthsBox.Text);
+                selectedServicePackage.InternetServiceDurationMonths = int.Parse(internetMonthsBox.Text);
 
                 availableInternetServiceModels.Remove(i);
                 selectedServicePackage.InternetService = i;
@@ -92,7 +92,7 @@ namespace ManagerUI
 
             if (ValidateMonths(tvMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(tvMonthsBox.Text);
+                selectedServicePackage.TvServiceDurationMonths = int.Parse(tvMonthsBox.Text);
 
                 availableTvServiceModels.Remove(i);
                 selectedServicePackage.TvService = i;
@@ -125,7 +125,7 @@ namespace ManagerUI
 
             if (ValidateMonths(phoneMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(phoneMonthsBox.Text);
+                selectedServicePackage.PhoneServiceDurationMonths = int.Parse(phoneMonthsBox.Text);
 
                 availablePhoneServiceModels.Remove(i);
                 selectedServicePackage.PhoneService = i;
@@ -186,17 +186,22 @@ namespace ManagerUI
                 if (selectedServicePackage.InternetService != null)
                 {
                     selectedServicePackage.InternetServiceStartingDate = DateTime.Now;
-                    selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths(selectedServicePackage.InternetService.DurationMonths);
+                    if(selectedServicePackage.InternetServiceDurationMonths != null) selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths((int)selectedServicePackage.InternetServiceDurationMonths);
+                    if(selectedServicePackage.InternetServiceDurationMonths == null) selectedServicePackage.InternetServiceEndingDate = selectedServicePackage.InternetServiceStartingDate.AddMonths(0);
                 }
                 if (selectedServicePackage.TvService != null)
                 {
                     selectedServicePackage.TvServiceStartingDate = DateTime.Now;
-                    selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths(selectedServicePackage.TvService.DurationMonths);
+                    if (selectedServicePackage.TvServiceDurationMonths != null) selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths((int)selectedServicePackage.TvServiceDurationMonths);
+                    if (selectedServicePackage.TvServiceDurationMonths == null) selectedServicePackage.TvServiceEndingDate = selectedServicePackage.TvServiceStartingDate.AddMonths(0);
+
                 }
                 if (selectedServicePackage.PhoneService != null)
                 {
                     selectedServicePackage.PhoneServiceStartingDate = DateTime.Now;
-                    selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths(selectedServicePackage.PhoneService.DurationMonths);
+                    if (selectedServicePackage.PhoneServiceDurationMonths != null) selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths((int)selectedServicePackage.PhoneServiceDurationMonths);
+                    if (selectedServicePackage.PhoneServiceDurationMonths == null) selectedServicePackage.PhoneServiceEndingDate = selectedServicePackage.PhoneServiceStartingDate.AddMonths(0);
+
                 }
 
                 bool validateAddress = false;

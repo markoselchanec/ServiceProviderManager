@@ -59,21 +59,9 @@ namespace ManagerUI
             updateTvMonthsBox.Text = "";
 
 
-            if(Customer.ServicePackage.InternetService != null)
-            {
-                if (Customer.ServicePackage.InternetService.Id != 0) updateSelectedInternetType.Text = $"{Customer.ServicePackage.InternetService.Name} : { calculateMonths(Customer.ServicePackage.InternetServiceStartingDate, Customer.ServicePackage.InternetServiceEndingDate)} Months";
-                if (Customer.ServicePackage.InternetService.DurationMonths != 0) updateSelectedInternetType.Text = Customer.ServicePackage.InternetService.NameAndDuration.ToString();
-            }
-            if(Customer.ServicePackage.TvService != null)
-            {
-                if (Customer.ServicePackage.TvService.Id != 0) updateSelectedTvType.Text = $"{Customer.ServicePackage.TvService.Name} : { calculateMonths(Customer.ServicePackage.TvServiceStartingDate, Customer.ServicePackage.TvServiceEndingDate)} Months";
-                if (Customer.ServicePackage.TvService.DurationMonths != 0) updateSelectedTvType.Text = Customer.ServicePackage.TvService.NameAndDuration.ToString();
-            }
-            if(Customer.ServicePackage.PhoneService != null)
-            {
-                if (Customer.ServicePackage.PhoneService.Id != 0) updateSelectedPhoneType.Text = $"{Customer.ServicePackage.PhoneService.Name} : { calculateMonths(Customer.ServicePackage.PhoneServiceStartingDate, Customer.ServicePackage.PhoneServiceEndingDate)} Months";
-                if (Customer.ServicePackage.PhoneService.DurationMonths != 0) updateSelectedPhoneType.Text = Customer.ServicePackage.PhoneService.NameAndDuration.ToString();
-            }
+            if (Customer.ServicePackage.InternetService != null) updateSelectedInternetType.Text = $"{Customer.ServicePackage.InternetService.Name} : {Customer.ServicePackage.InternetServiceDurationMonths}";
+            if (Customer.ServicePackage.TvService != null) updateSelectedTvType.Text = $"{Customer.ServicePackage.TvService.Name} : {Customer.ServicePackage.TvServiceDurationMonths}";
+            if (Customer.ServicePackage.PhoneService != null) updateSelectedPhoneType.Text = $"{Customer.ServicePackage.PhoneService.Name} : {Customer.ServicePackage.PhoneServiceDurationMonths}";
         }
         private int calculateMonths(DateTime date2, DateTime date1)
         {
@@ -86,7 +74,7 @@ namespace ManagerUI
 
             if (ValidateMonths(updateInternetMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(updateInternetMonthsBox.Text);
+                Customer.ServicePackage.InternetServiceDurationMonths = int.Parse(updateInternetMonthsBox.Text);
 
                 newListInternet.Remove(i);
                 Customer.ServicePackage.InternetService = i;
@@ -101,7 +89,7 @@ namespace ManagerUI
 
             if (ValidateMonths(updateTvMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(updateTvMonthsBox.Text);
+                Customer.ServicePackage.TvServiceDurationMonths = int.Parse(updateTvMonthsBox.Text);
 
                 newListTv.Remove(i);
                 Customer.ServicePackage.TvService = i;
@@ -117,7 +105,7 @@ namespace ManagerUI
 
             if (ValidateMonths(updatePhoneMonthsBox.Text))
             {
-                i.DurationMonths = int.Parse(updatePhoneMonthsBox.Text);
+                Customer.ServicePackage.PhoneServiceDurationMonths = int.Parse(updatePhoneMonthsBox.Text);
 
                 newListPhone.Remove(i);
                 Customer.ServicePackage.PhoneService = i;
@@ -199,17 +187,17 @@ namespace ManagerUI
                 if (Customer.ServicePackage.InternetService != null)
                 {
                     Customer.ServicePackage.InternetServiceStartingDate = DateTime.Now;
-                    Customer.ServicePackage.InternetServiceEndingDate = Customer.ServicePackage.InternetServiceStartingDate.AddMonths(Customer.ServicePackage.InternetService.DurationMonths);
+                    Customer.ServicePackage.InternetServiceEndingDate = Customer.ServicePackage.InternetServiceStartingDate.AddMonths(Customer.ServicePackage.InternetServiceDurationMonths);
                 }
                 if (Customer.ServicePackage.TvService != null)
                 {
                     Customer.ServicePackage.TvServiceStartingDate = DateTime.Now;
-                    Customer.ServicePackage.TvServiceEndingDate = Customer.ServicePackage.TvServiceStartingDate.AddMonths(Customer.ServicePackage.TvService.DurationMonths);
+                    Customer.ServicePackage.TvServiceEndingDate = Customer.ServicePackage.TvServiceStartingDate.AddMonths(Customer.ServicePackage.TvServiceDurationMonths);
                 }
                 if (Customer.ServicePackage.PhoneService != null)
                 {
                     Customer.ServicePackage.PhoneServiceStartingDate = DateTime.Now;
-                    Customer.ServicePackage.PhoneServiceEndingDate = Customer.ServicePackage.PhoneServiceStartingDate.AddMonths(Customer.ServicePackage.PhoneService.DurationMonths);
+                    Customer.ServicePackage.PhoneServiceEndingDate = Customer.ServicePackage.PhoneServiceStartingDate.AddMonths(Customer.ServicePackage.PhoneServiceDurationMonths);
                 }
 
                 GlobalConfig.Connection.UpdateServicePackage(Customer.ServicePackage);

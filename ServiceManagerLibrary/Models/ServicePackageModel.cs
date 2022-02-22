@@ -17,6 +17,10 @@ namespace ServiceManagerLibrary.Models
         /// </summary>
         public InternetServiceModel? InternetService { get; set; }
         /// <summary>
+        /// The Duration for the internet service.
+        /// </summary>
+        public int InternetServiceDurationMonths { get; set; }
+        /// <summary>
         /// The starting date of the internet service.
         /// </summary>
         public DateTime InternetServiceStartingDate { get; set; }
@@ -29,6 +33,10 @@ namespace ServiceManagerLibrary.Models
         /// </summary>
         public TvServiceModel? TvService { get; set; }
         /// <summary>
+        /// The Duration for the tv service.
+        /// </summary>
+        public int TvServiceDurationMonths { get; set; }
+        /// <summary>
         /// The starting date of the tv service.
         /// </summary>
         public DateTime TvServiceStartingDate { get; set; }
@@ -40,6 +48,10 @@ namespace ServiceManagerLibrary.Models
         /// The type of phone service for the package.
         /// </summary>
         public PhoneServiceModel? PhoneService { get; set; }
+        /// <summary>
+        /// The Duration for the phone service.
+        /// </summary>
+        public int PhoneServiceDurationMonths { get; set; }
         /// <summary>
         /// The starting date of the phone service.
         /// </summary>

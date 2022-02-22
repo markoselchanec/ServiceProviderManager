@@ -23,12 +23,15 @@ GO
 CREATE TABLE [dbo].[ServicePackage](
 [id][int] IDENTITY(1,1) NOT NULL,
 [InternetServiceId] [int] NULL,
+[InternetServiceDurationMonths] [int] NULL,
 [InternetServiceStartingDate] [datetime] NULL,
 [InternetServiceEndingDate] [datetime] NULL,
 [TvServiceId] [int] NULL,
+[TvServiceDurationMonths] [int] NULL,
 [TvServiceStartingDate] [datetime] NULL,
 [TvServiceEndingDate] [datetime] NULL,
 [PhoneServiceId] [int] NULL,
+[PhoneServiceDurationMonths] [int] NULL,
 [PhoneServiceStartingDate] [datetime] NULL,
 [PhoneServiceEndingDate] [datetime] NULL,
  CONSTRAINT [PK_ServicePackage] PRIMARY KEY CLUSTERED 
@@ -42,7 +45,6 @@ CREATE TABLE [dbo].[InternetService](
 [Name] [nvarchar](100) NOT NULL,
 [Speed] [nvarchar](100) NOT NULL,
 [CostPerMonth] [money] NOT NULL,
-[DurationMonths] [int] NULL,
  CONSTRAINT [PK_InternetService] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -54,7 +56,6 @@ CREATE TABLE [dbo].[TvService](
 [Name] [nvarchar](100) NOT NULL,
 [ChannelCount] [int] NOT NULL,
 [CostPerMonth] [money] NOT NULL,
-[DurationMonths] [int] NULL,
  CONSTRAINT [PK_TvService] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -67,7 +68,6 @@ CREATE TABLE [dbo].[PhoneService](
 [TalkingMinutes] [int] NOT NULL,
 [MessageAmount] [int] NOT NULL,
 [CostPerMonth] [money] NOT NULL,
-[DurationMonths] [int] NULL,
  CONSTRAINT [PK_PhoneService] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -75,25 +75,19 @@ CREATE TABLE [dbo].[PhoneService](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[ServicePackage]  WITH CHECK ADD  CONSTRAINT [FK_InternetService] FOREIGN KEY([InternetServiceId])
+ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_InternetService] FOREIGN KEY([InternetServiceId])
 REFERENCES [dbo].[InternetService] ([id])
-ON DELETE CASCADE
-ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[ServicePackage]  WITH CHECK ADD  CONSTRAINT [FK_TvService] FOREIGN KEY([TvServiceId])
+ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_TvService] FOREIGN KEY([TvServiceId])
 REFERENCES [dbo].[TvService] ([id])
-ON DELETE CASCADE
-ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[ServicePackage]  WITH CHECK ADD  CONSTRAINT [FK_PhoneService] FOREIGN KEY([PhoneServiceId])
+ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_PhoneService] FOREIGN KEY([PhoneServiceId])
 REFERENCES [dbo].[PhoneService] ([id])
-ON DELETE CASCADE
-ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_ServicePackage] FOREIGN KEY([ServicePackageId])
+ALTER TABLE [dbo].[Customer]  ADD  CONSTRAINT [FK_ServicePackage] FOREIGN KEY([ServicePackageId])
 REFERENCES [dbo].[ServicePackage] ([id])
 ON DELETE CASCADE
 ON UPDATE CASCADE
@@ -171,12 +165,15 @@ GO
 
 CREATE PROCEDURE [dbo].[spServicePackage_Insert]
 @InternetServiceId int,
+@InternetServiceDurationMonths int,
 @InternetServiceStartingDate datetime,
 @InternetServiceEndingDate datetime,
 @TvServiceId int,
+@TvServiceDurationMonths int,
 @TvServiceStartingDate datetime,
 @TvServiceEndingDate datetime,
 @PhoneServiceId int,
+@PhoneServiceDurationMonths int,
 @PhoneServiceStartingDate datetime,
 @PhoneServiceEndingDate datetime,
 @id int =0 output
@@ -184,8 +181,31 @@ AS
 BEGIN
 	
 	SET NOCOUNT ON;
-	INSERT INTO dbo.ServicePackage(InternetServiceId,InternetServiceStartingDate,InternetServiceEndingDate,TvServiceId,TvServiceStartingDate,TvServiceEndingDate,PhoneServiceId,PhoneServiceStartingDate,PhoneServiceEndingDate)
-	VALUES(@InternetServiceId, @InternetServiceStartingDate,@InternetServiceEndingDate,@TvServiceId,@TvServiceStartingDate,@TvServiceEndingDate,@PhoneServiceId,@PhoneServiceStartingDate,@PhoneServiceEndingDate);
+	INSERT INTO dbo.ServicePackage(
+									InternetServiceId,
+									InternetServiceDurationMonths,
+									InternetServiceStartingDate,
+									InternetServiceEndingDate,
+									TvServiceId,
+									TvServiceDurationMonths,
+									TvServiceStartingDate,
+									TvServiceEndingDate,
+									PhoneServiceId,
+									PhoneServiceDurationMonths,
+									PhoneServiceStartingDate,
+									PhoneServiceEndingDate)
+	VALUES(	                        @InternetServiceId,
+									@InternetServiceDurationMonths, 
+									@InternetServiceStartingDate,
+									@InternetServiceEndingDate,
+									@TvServiceId,
+									@TvServiceDurationMonths,
+									@TvServiceStartingDate,
+									@TvServiceEndingDate,
+									@PhoneServiceId,
+									@PhoneServiceDurationMonths,
+									@PhoneServiceStartingDate,
+									@PhoneServiceEndingDate);
 	SELECT @id = SCOPE_IDENTITY();
 
 END
@@ -321,12 +341,15 @@ GO
 
 CREATE PROCEDURE [dbo].[spServicePackage_Update]
 @InternetServiceId int,
+@InternetServiceDurationMonths int,
 @InternetServiceStartingDate datetime,
 @InternetServiceEndingDate datetime,
 @TvServiceId int,
+@TvServiceDurationMonths int,
 @TvServiceStartingDate datetime,
 @TvServiceEndingDate datetime,
 @PhoneServiceId int,
+@PhoneServiceDurationMonths int,
 @PhoneServiceStartingDate datetime,
 @PhoneServiceEndingDate datetime,
 @id int =0 output
@@ -336,12 +359,15 @@ BEGIN
 	SET NOCOUNT ON;
 	UPDATE dbo.ServicePackage
 	SET InternetServiceId = @InternetServiceId,
+		InternetServiceDurationMonths = @InternetServiceDurationMonths,
 		InternetServiceStartingDate = @InternetServiceStartingDate,
 		InternetServiceEndingDate = @InternetServiceEndingDate,
 		TvServiceId = @TvServiceId,
+		TvServiceDurationMonths = @TvServiceDurationMonths,
 		TvServiceStartingDate = @TvServiceStartingDate,
 		TvServiceEndingDate = @TvServiceEndingDate,
 		PhoneServiceId = @PhoneServiceId,
+		PhoneServiceDurationMonths = @PhoneServiceDurationMonths,
 		PhoneServiceStartingDate = @PhoneServiceStartingDate,
 		PhoneServiceEndingDate = @PhoneServiceEndingDate;
 	SELECT @id = SCOPE_IDENTITY();
@@ -392,3 +418,20 @@ INSERT INTO dbo.PhoneService(Name,TalkingMinutes,MessageAmount,CostPerMonth)
 VALUES('Max50', 5000,500, 500);
 INSERT INTO dbo.PhoneService(Name,TalkingMinutes,MessageAmount,CostPerMonth)
 VALUES('Super 60', 6000,600, 600);
+
+
+
+
+
+
+
+--TESTING
+SELECT * FROM CUSTOMER as c
+LEFT JOIN ServicePackage as s on c.id = s.id
+LEFT JOIN InternetService as i on s.InternetServiceId = i.id
+LEFT JOIN PhoneService as p on s.PhoneServiceId = p.id
+LEFT JOIN TvService as t on s.TvServiceId = t.id
+WHERE c.AddressName = 'Bitolska' AND c.AddressNumber = 64;
+
+select * from dbo.ServicePackage
+WHERE ServicePackage.id = 2;

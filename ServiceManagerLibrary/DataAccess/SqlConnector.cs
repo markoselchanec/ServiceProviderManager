@@ -166,33 +166,68 @@ namespace ServiceManagerLibrary.DataAccess
             using (SqlConnection connection = new(GlobalConfig.CnnString(db)))
             {
                 //@InternetServiceId int,
+                //@InternetServiceDurationMonths int, 
                 //@InternetServiceStartingDate datetime,
                 //@InternetServiceEndingDate datetime,
                 //@TvServiceId int,
+                //@TvServiceDurationMonths int,
                 //@TvServiceStartingDate datetime,
                 //@TvServiceEndingDate datetime,
                 //@PhoneServiceId int,
+                //@PhoneServiceDurationMonths int,
                 //@PhoneServiceStartingDate datetime,
                 //@PhoneServiceEndingDate datetime,
+                //@id int = 0 output
                 DynamicParameters p = new DynamicParameters();
-                if(model.InternetService != null) p.Add("@InternetServiceId", model.InternetService.Id);
-                if(model.InternetService == null) p.Add("@InternetServiceId", null);
-                if (model.InternetService != null) p.Add("@InternetServiceStartingDate", model.InternetServiceStartingDate);
-                if (model.InternetService == null) p.Add("@InternetServiceStartingDate", null);
-                if (model.InternetService != null) p.Add("@InternetServiceEndingDate", model.InternetServiceEndingDate);
-                if (model.InternetService == null) p.Add("@InternetServiceEndingDate", null);
-                if (model.TvService != null) p.Add("@TvServiceId", model.TvService.Id);
-                if (model.TvService == null) p.Add("@TvServiceId", null);
-                if (model.TvService != null) p.Add("@TvServiceStartingDate", model.TvServiceStartingDate);
-                if (model.TvService == null) p.Add("@TvServiceStartingDate", null);
-                if (model.TvService != null) p.Add("@TvServiceEndingDate", model.TvServiceEndingDate);
-                if (model.TvService == null) p.Add("@TvServiceEndingDate", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceId", model.PhoneService.Id);
-                if (model.PhoneService == null) p.Add("@PhoneServiceId", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceStartingDate", model.PhoneServiceStartingDate);
-                if (model.PhoneService == null) p.Add("@PhoneServiceStartingDate", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceEndingDate", model.PhoneServiceEndingDate);
-                if (model.PhoneService == null) p.Add("@PhoneServiceEndingDate", null);
+
+                if (model.InternetService != null)
+                {
+                    p.Add("@InternetServiceId", model.InternetService.Id);
+                    p.Add("@InternetServiceDurationMonths", model.InternetServiceDurationMonths);
+                    p.Add("@InternetServiceStartingDate", model.InternetServiceStartingDate);
+                    p.Add("@InternetServiceEndingDate", model.InternetServiceEndingDate);
+
+                }
+                if (model.InternetService == null)
+                {
+                    p.Add("@InternetServiceId", null);
+                    p.Add("@InternetServiceDurationMonths", null);
+                    p.Add("@InternetServiceStartingDate", null);
+                    p.Add("@InternetServiceEndingDate", null);
+                }
+
+                if (model.TvService != null)
+                {
+                    p.Add("@TvServiceId", model.TvService.Id);
+                    p.Add("@TvServiceDurationMonths", model.TvServiceDurationMonths);
+                    p.Add("@TvServiceStartingDate", model.TvServiceStartingDate);
+                    p.Add("@TvServiceEndingDate", model.TvServiceEndingDate);
+
+                }
+                if (model.TvService == null)
+                {
+                    p.Add("@TvServiceId", null);
+                    p.Add("@TvServiceDurationMonths", null);
+                    p.Add("@TvServiceStartingDate", null);
+                    p.Add("@TvServiceEndingDate", null);
+                }
+
+                if (model.PhoneService != null)
+                {
+                    p.Add("@PhoneServiceId", model.PhoneService.Id);
+                    p.Add("@PhoneServiceDurationMonths", model.PhoneServiceDurationMonths);
+                    p.Add("@PhoneServiceStartingDate", model.PhoneServiceStartingDate);
+                    p.Add("@PhoneServiceEndingDate", model.PhoneServiceEndingDate);
+
+                }
+                if (model.PhoneService == null)
+                {
+                    p.Add("@PhoneServiceId", null);
+                    p.Add("@PhoneServiceDurationMonths", null);
+                    p.Add("@PhoneServiceStartingDate", null);
+                    p.Add("@PhoneServiceEndingDate", null);
+                }
+
                 //Extracts id from DB.
                 p.Add(
                     "@id",
@@ -212,46 +247,79 @@ namespace ServiceManagerLibrary.DataAccess
             using (SqlConnection connection = new(GlobalConfig.CnnString(db)))
             {
                 //@InternetServiceId int,
+                //@InternetServiceDurationMonths int,
                 //@InternetServiceStartingDate datetime,
                 //@InternetServiceEndingDate datetime,
                 //@TvServiceId int,
+                //@TvServiceDurationMonths int,
                 //@TvServiceStartingDate datetime,
                 //@TvServiceEndingDate datetime,
                 //@PhoneServiceId int,
+                //@PhoneServiceDurationMonths int,
                 //@PhoneServiceStartingDate datetime,
                 //@PhoneServiceEndingDate datetime,
-                DynamicParameters p = new DynamicParameters();
-                if (model.InternetService != null) p.Add("@InternetServiceId", model.InternetService.Id);
-                if (model.InternetService == null) p.Add("@InternetServiceId", null);
-                if (model.InternetService != null) p.Add("@InternetServiceStartingDate", model.InternetServiceStartingDate);
-                if (model.InternetService == null) p.Add("@InternetServiceStartingDate", null);
-                if (model.InternetService != null) p.Add("@InternetServiceEndingDate", model.InternetServiceEndingDate);
-                if (model.InternetService == null) p.Add("@InternetServiceEndingDate", null);
-                if (model.TvService != null) p.Add("@TvServiceId", model.TvService.Id);
-                if (model.TvService == null) p.Add("@TvServiceId", null);
-                if (model.TvService != null) p.Add("@TvServiceStartingDate", model.TvServiceStartingDate);
-                if (model.TvService == null) p.Add("@TvServiceStartingDate", null);
-                if (model.TvService != null) p.Add("@TvServiceEndingDate", model.TvServiceEndingDate);
-                if (model.TvService == null) p.Add("@TvServiceEndingDate", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceId", model.PhoneService.Id);
-                if (model.PhoneService == null) p.Add("@PhoneServiceId", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceStartingDate", model.PhoneServiceStartingDate);
-                if (model.PhoneService == null) p.Add("@PhoneServiceStartingDate", null);
-                if (model.PhoneService != null) p.Add("@PhoneServiceEndingDate", model.PhoneServiceEndingDate);
-                if (model.PhoneService == null) p.Add("@PhoneServiceEndingDate", null);
-                //Extracts id from DB.
-                //p.Add(
-                //    "@id",
-                //    0,
-                //    dbType: DbType.Int32,
-                //    direction: ParameterDirection.Output);
-                //Executes the stored procedure.
-     
+                //@id int = 0 output
+                 DynamicParameters p = new DynamicParameters();
+
+                if (model.InternetService != null)
+                {
+                    if(model.InternetService.Id == 0)
+                    {
+                        model.InternetService.Id = null;
+                    }
+                    p.Add("@InternetServiceId", model.InternetService.Id);
+                    p.Add("@InternetServiceStartingDate", model.InternetServiceStartingDate);
+                    p.Add("@InternetServiceEndingDate", model.InternetServiceEndingDate);
+                    p.Add("@InternetServiceDurationMonths", model.InternetServiceDurationMonths);
+                }
+
+                if (model.InternetService == null)
+                {
+                    p.Add("@InternetServiceId", null);
+                    p.Add("@InternetServiceStartingDate", null);
+                    p.Add("@InternetServiceEndingDate", null);
+                    p.Add("@InternetServiceDurationMonths", null);
+                }
+
+                if (model.TvService != null)
+                {
+                    if(model.TvService.Id == 0)
+                    {
+                        model.TvService.Id = null;
+                    }
+                    p.Add("@TvServiceId", model.TvService.Id);
+                    p.Add("@TvServiceStartingDate", model.TvServiceStartingDate);
+                    p.Add("@TvServiceEndingDate", model.TvServiceEndingDate);
+                    p.Add("@TvServiceDurationMonths", model.TvServiceDurationMonths);
+                }
+                if (model.TvService == null)
+                {
+                    p.Add("@TvServiceId", null);
+                    p.Add("@TvServiceStartingDate", null);
+                    p.Add("@TvServiceEndingDate", null);
+                    p.Add("@TvServiceDurationMonths", null);
+                }
+
+                if (model.PhoneService != null) {
+                    if(model.PhoneService.Id == 0)
+                    {
+                        model.PhoneService.Id = null;
+                    }
+                    p.Add("@PhoneServiceId", model.PhoneService.Id);
+                    p.Add("@PhoneServiceStartingDate", model.PhoneServiceStartingDate);
+                    p.Add("@PhoneServiceEndingDate", model.PhoneServiceEndingDate);
+                    p.Add("@PhoneServiceDurationMonths", model.PhoneServiceDurationMonths);
+                }
+                if (model.PhoneService == null)
+                {
+                    p.Add("@PhoneServiceId", null);
+                    p.Add("@PhoneServiceStartingDate", null);
+                    p.Add("@PhoneServiceEndingDate", null);
+                    p.Add("@PhoneServiceDurationMonths", null);
+                }
+
                 connection.Execute("dbo.spServicePackage_Update", p, commandType: CommandType.StoredProcedure);
 
-                
-                //executes get generic method and finds id that we get back through the stored procedure.
-                //model.Id = p.Get<int>("@id");
             }
         }
 

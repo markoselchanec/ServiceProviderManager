@@ -35,7 +35,7 @@ namespace ServiceManagerLibrary.Models
         /// <summary>
         /// The unique identifier for the phone service.
         /// </summary>
-        public int Id { get; set; }
+        public int? Id { get; set; }
         /// <summary>
         /// The name of the phone service.
         /// </summary>
@@ -52,17 +52,6 @@ namespace ServiceManagerLibrary.Models
         /// Cost per month of the phone service.
         /// </summary>
         public decimal CostPerMonth { get; set; }
-        /// <summary>
-        /// How many months the phone service lasts.
-        /// </summary>
-        public int DurationMonths { get; set; }
-        public string NameAndDuration
-        {
-            get
-            {
-                if (DurationMonths != 0) return $"{Name} : {DurationMonths} Months";
-                return "";
-            }
-        }
+
     }
 }
