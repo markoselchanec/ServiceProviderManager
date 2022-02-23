@@ -48,12 +48,16 @@ namespace ServiceManagerLibrary.DataAccess
                     direction: ParameterDirection.Output);
                 //Executes the stored procedure.
                 connection.Execute("dbo.spCustomer_Insert", p, commandType: CommandType.StoredProcedure);
-                //executes get generic method and finds id that we get back through the stored procedure.
+                //Executes get generic method and finds id that we get back through the stored procedure.
                 model.Id = p.Get<int>("@id");
 
                 
             }
         }
+        /// <summary>
+        /// Update an existing customer in the database.
+        /// </summary>
+        /// <param name="model">The customer to be modified.</param>
         public void UpdateCustomer(CustomerModel model)
         {
             /// System.Data.SqlClient NUGET package.
@@ -78,6 +82,7 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@EmailAddress", model.EmailAddress);
                 p.Add("@ServicePackageId", model.ServicePackage.Id);
 
+                //Executes the stored procedure.
                 connection.Execute("spCustomer_Update", p, commandType: CommandType.StoredProcedure);
 
             }
@@ -96,11 +101,8 @@ namespace ServiceManagerLibrary.DataAccess
                 //@CostPerMonth money,
                 //@id int = 0 output
                 DynamicParameters p = new DynamicParameters();
-                //Inserts Name from argument.
                 p.Add("@Name", model.Name);
-                //Inserts Speed from argument.
                 p.Add("@Speed", model.Speed);
-                //Inserts CostPerMonth from argument.
                 p.Add("@CostPerMonth", model.CostPerMonth);
                 //Extracts id from DB.
                 p.Add(
@@ -110,7 +112,7 @@ namespace ServiceManagerLibrary.DataAccess
                     direction: ParameterDirection.Output);
                 //Executes the stored procedure.
                 connection.Execute("dbo.spInternetService_Insert",p,commandType: CommandType.StoredProcedure);
-                //executes get generic method and finds id that we get back through the stored procedure.
+                //Executes get generic method and finds id that we get back through the stored procedure.
                 model.Id = p.Get<int>("@id");
             }
         }
@@ -129,13 +131,9 @@ namespace ServiceManagerLibrary.DataAccess
                 //@CostPerMonth money,
                 //@id int = 0 output
                  DynamicParameters p = new DynamicParameters();
-                //Inserts Name from argument.
                 p.Add("@Name", model.Name);
-                //Inserts TalkingMinutes from argument.
                 p.Add("@TalkingMinutes", model.TalkingMinutes);               
-                //Inserts MessageAmount from argument.
                 p.Add("@MessageAmount", model.MessageAmount);
-                //Inserts CostPerMonth from argument.
                 p.Add("@CostPerMonth", model.CostPerMonth);
                 //Extracts id from DB.
                 p.Add(
@@ -145,7 +143,7 @@ namespace ServiceManagerLibrary.DataAccess
                     direction: ParameterDirection.Output);
                 //Executes the stored procedure.
                 connection.Execute("spPhoneService_Insert", p, commandType: CommandType.StoredProcedure);
-                //executes get generic method and finds id that we get back through the stored procedure.
+                //Executes get generic method and finds id that we get back through the stored procedure.
                 model.Id = p.Get<int>("@id");
             }
         }
@@ -179,7 +177,6 @@ namespace ServiceManagerLibrary.DataAccess
                     p.Add("@InternetServiceDurationMonths", model.InternetServiceDurationMonths);
                     p.Add("@InternetServiceStartingDate", model.InternetServiceStartingDate);
                     p.Add("@InternetServiceEndingDate", model.InternetServiceEndingDate);
-
                 }
                 if (model.InternetService == null)
                 {
@@ -233,7 +230,10 @@ namespace ServiceManagerLibrary.DataAccess
                 model.Id = p.Get<int>("@id");
             }
         }
-
+        /// <summary>
+        /// Update a service package.
+        /// </summary>
+        /// <param name="model">The service package to be modified.</param>
         public void UpdateServicePackage(ServicePackageModel model)
         {
             /// System.Data.SqlClient NUGET package.
@@ -330,11 +330,8 @@ namespace ServiceManagerLibrary.DataAccess
                 //@CostPerMonth money,
                 //@id int = 0 output
                  DynamicParameters p = new DynamicParameters();
-                //Inserts Name from argument.
                 p.Add("@Name", model.Name);
-                //Inserts Speed from argument.
                 p.Add("@ChannelCount", model.ChannelCount);
-                //Inserts CostPerMonth from argument.
                 p.Add("@CostPerMonth", model.CostPerMonth);
                 //Extracts id from DB.
                 p.Add(
@@ -380,7 +377,6 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@InternetServiceId", model.Id);
                 //Executes the stored procedure.
                 connection.Execute("dbo.spInternetService_DeleteById", p, commandType: CommandType.StoredProcedure);
-
             }
         }
         /// <summary>
@@ -397,7 +393,6 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@PhoneServiceId", model.Id);
                 //Executes the stored procedure.
                 connection.Execute("dbo.spPhoneService_DeleteById", p, commandType: CommandType.StoredProcedure);
-
             }
         }
         /// <summary>
@@ -414,7 +409,6 @@ namespace ServiceManagerLibrary.DataAccess
                 p.Add("@TvServiceId", model.Id);
                 //Executes the stored procedure.
                 connection.Execute("dbo.spTvService_DeleteById", p, commandType: CommandType.StoredProcedure);
-
             }
         }
         /// <summary>
@@ -564,7 +558,5 @@ namespace ServiceManagerLibrary.DataAccess
             }
             return output;
         }
-
-
     }
 }

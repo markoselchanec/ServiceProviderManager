@@ -38,7 +38,7 @@ namespace ManagerUI.Customer
                 customerAddressValueLabel.Text = customer.AddressName + " " + customer.AddressNumber;
                 customerEmailAddressValueLabel.Text = customer.EmailAddress;
                 customerPhoneNumberValueLabel.Text = customer.PhoneNumber;
-                customerRegistrationDateValueLabel.Text = customer.Registered.ToString("dd/MM/yyyy");
+                customerRegistrationDateValueLabel.Text = customer.Registered.ToString("dd/MM/yyyy HH:mm");
 
                 if (customer.ServicePackage.InternetService.Id == null || customer.ServicePackage.InternetService == null)
                 {

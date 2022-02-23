@@ -43,7 +43,7 @@
             this.deleteTvServiceButton.TabIndex = 42;
             this.deleteTvServiceButton.Text = "Delete";
             this.deleteTvServiceButton.UseVisualStyleBackColor = true;
-            this.deleteTvServiceButton.Click += new System.EventHandler(this.deleteTvServiceButton_Click);
+            this.deleteTvServiceButton.Click += new System.EventHandler(this.deleteTvServiceButton_Click_1);
             // 
             // tvServiceListBox
             // 

@@ -26,7 +26,7 @@ namespace ManagerUI.Services.Delete
             tvServiceListBox.DataSource = GlobalConfig.Connection.GetTvService_All();
             tvServiceListBox.DisplayMember = "Name";
         }
-        private void deleteTvServiceButton_Click(object sender, EventArgs e)
+        private void deleteTvServiceButton_Click_1(object sender, EventArgs e)
         {
             var selectedItem = (TvServiceModel)tvServiceListBox.SelectedItem;
             GlobalConfig.Connection.DeleteTvService(selectedItem);

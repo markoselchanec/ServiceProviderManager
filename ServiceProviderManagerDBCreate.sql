@@ -77,14 +77,20 @@ GO
 
 ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_InternetService] FOREIGN KEY([InternetServiceId])
 REFERENCES [dbo].[InternetService] ([id])
+ON DELETE SET NULL
+ON UPDATE SET NULL
 GO
 
 ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_TvService] FOREIGN KEY([TvServiceId])
 REFERENCES [dbo].[TvService] ([id])
+ON DELETE SET NULL
+ON UPDATE SET NULL
 GO
 
 ALTER TABLE [dbo].[ServicePackage]  ADD  CONSTRAINT [FK_PhoneService] FOREIGN KEY([PhoneServiceId])
 REFERENCES [dbo].[PhoneService] ([id])
+ON DELETE SET NULL
+ON UPDATE SET NULL
 GO
 
 ALTER TABLE [dbo].[Customer]  ADD  CONSTRAINT [FK_ServicePackage] FOREIGN KEY([ServicePackageId])

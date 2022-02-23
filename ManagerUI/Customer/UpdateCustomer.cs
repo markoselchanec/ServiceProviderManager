@@ -63,9 +63,9 @@ namespace ManagerUI
             if (Customer.ServicePackage.InternetService != null) updateSelectedInternetType.Text = $"{Customer.ServicePackage.InternetService.Name} : {Customer.ServicePackage.InternetServiceDurationMonths}";
             if (Customer.ServicePackage.TvService != null) updateSelectedTvType.Text = $"{Customer.ServicePackage.TvService.Name} : {Customer.ServicePackage.TvServiceDurationMonths}";
             if (Customer.ServicePackage.PhoneService != null) updateSelectedPhoneType.Text = $"{Customer.ServicePackage.PhoneService.Name} : {Customer.ServicePackage.PhoneServiceDurationMonths}";
-            if (Customer.ServicePackage.InternetServiceDurationMonths == 0) updateSelectedInternetType.Text = "";
-            if (Customer.ServicePackage.TvServiceDurationMonths == 0) updateSelectedTvType.Text = "";
-            if (Customer.ServicePackage.PhoneServiceDurationMonths == 0) updateSelectedPhoneType.Text = "";
+            if (Customer.ServicePackage.InternetServiceDurationMonths == 0 || Customer.ServicePackage.InternetService.Id == null) updateSelectedInternetType.Text = "";
+            if (Customer.ServicePackage.TvServiceDurationMonths == 0 || Customer.ServicePackage.TvService.Id == null) updateSelectedTvType.Text = "";
+            if (Customer.ServicePackage.PhoneServiceDurationMonths == 0 || Customer.ServicePackage.PhoneService.Id == null) updateSelectedPhoneType.Text = "";
         }
 
         private void updaterAddInternetServiceButton_Click(object sender, EventArgs e)
